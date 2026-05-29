@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --bg-graphite: #0b0b0c;
+  --apple-glass-bg: rgba(18, 18, 20, 0.45);
+  --apple-glass-border: rgba(255, 255, 255, 0.08);
+  --neon-gold: rgba(245, 158, 11, 0.35);
+  --neon-orange: rgba(249, 115, 22, 0.35);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg-graphite);
+  color: #f4f4f5; /* zinc-100 */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Premium Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-graphite);
+}
+::-webkit-scrollbar-thumb {
+  background: #222225;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #333338;
+}
+
+/* Hide scrollbar utility */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Apple-style Glass Card and Hover Neon Border effects */
+.apple-glass-card {
+  background: var(--apple-glass-bg);
+  border: 1px solid var(--apple-glass-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Gold/Amber Neon glow on hover */
+.neon-glow-gold:hover {
+  border-color: rgba(245, 158, 11, 0.45);
+  box-shadow: 
+    0 10px 40px -10px rgba(0, 0, 0, 0.6),
+    0 0 25px rgba(245, 158, 11, 0.15),
+    inset 0 0 12px rgba(245, 158, 11, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Orange/Warm Neon glow on hover */
+.neon-glow-orange:hover {
+  border-color: rgba(249, 115, 22, 0.45);
+  box-shadow: 
+    0 10px 40px -10px rgba(0, 0, 0, 0.6),
+    0 0 25px rgba(249, 115, 22, 0.15),
+    inset 0 0 12px rgba(249, 115, 22, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Default highlight glow for featured items */
+.highlight-gold-active {
+  border-color: rgba(245, 158, 11, 0.25);
+  box-shadow: 
+    0 10px 40px -10px rgba(0, 0, 0, 0.5),
+    0 0 15px rgba(245, 158, 11, 0.05);
+}
+
+.highlight-orange-active {
+  border-color: rgba(249, 115, 22, 0.25);
+  box-shadow: 
+    0 10px 40px -10px rgba(0, 0, 0, 0.5),
+    0 0 15px rgba(249, 115, 22, 0.05);
+}
+
+/* Premium Button style */
+.btn-premium {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 10px 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #e4e4e7;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.btn-premium:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(245, 158, 11, 0.4);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.1);
+}
+
+/* Primary CTA Button (WhatsApp look) */
+.btn-premium-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.9) 0%, rgba(249, 115, 22, 0.9) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  padding: 12px 24px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #0b0b0c;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.15);
+}
+
+.btn-premium-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 
+    0 6px 20px rgba(245, 158, 11, 0.25),
+    0 0 15px rgba(249, 115, 22, 0.2);
+  filter: brightness(1.1);
+}
+
+/* Background grid details */
+.grid-bg-overlay {
+  background-size: 60px 60px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+}
