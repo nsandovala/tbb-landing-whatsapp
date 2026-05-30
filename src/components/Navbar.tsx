@@ -1,39 +1,46 @@
+import Image from 'next/image';
 import { createWhatsAppLink, HERO_MESSAGE } from '../lib/whatsapp';
 
 export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/5 bg-[#0b0b0c]/80 backdrop-blur-xl">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-3.5">
-        <a href="#top" className="flex items-center gap-3 group">
-          <img
+      <nav
+        aria-label="Principal"
+        className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6"
+      >
+        <a href="#top" className="group flex min-w-0 items-center gap-3" aria-label="Ir al inicio">
+          <Image
             src="/brand/icono.png"
-            alt="TBB Icono"
-            className="h-7 w-7 object-contain transition-transform duration-500 group-hover:scale-105"
+            alt="Icono de The Best Burger"
+            width={32}
+            height={32}
+            className="h-8 w-8 object-contain transition-transform duration-500 group-hover:scale-105"
           />
-          <div className="flex flex-col md:flex-row md:items-center gap-0.5 md:gap-3">
-            <span className="tracking-[0.18em] font-semibold text-xs text-zinc-100 uppercase font-sans">
+          <div className="flex min-w-0 flex-col gap-0.5 md:flex-row md:items-center md:gap-3">
+            <span className="truncate text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-100">
               The Best Burger
             </span>
-            <span className="hidden md:inline-block h-3 w-px bg-zinc-800" />
-            <span className="inline-flex items-center gap-1.5 text-[9px] tracking-wider text-zinc-400 uppercase font-mono">
+            <span className="hidden h-3 w-px bg-zinc-800 md:inline-block" />
+            <span className="inline-flex items-center gap-1.5 text-[9px] uppercase tracking-[0.18em] text-zinc-400">
               <span className="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" />
-              Receta de la Abuela — Playa Ancha
+              Receta de la Abuela, Playa Ancha
             </span>
           </div>
         </a>
 
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-2 sm:gap-3">
           <a
             href="#menu"
-            className="text-xs font-medium tracking-wide text-zinc-400 transition hover:text-zinc-100 px-3 py-1.5"
+            className="rounded-full px-3 py-2 text-[11px] font-medium uppercase tracking-[0.18em] text-zinc-400 transition hover:text-zinc-100"
           >
-            Ver Carta
+            Carta
           </a>
           <a
             href={createWhatsAppLink(HERO_MESSAGE)}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold tracking-wide text-zinc-300 transition-all duration-300 hover:border-amber-500/30 hover:bg-amber-500/5 hover:text-white"
+            aria-label="Abrir WhatsApp para pedir"
+            className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-300 transition-all duration-300 hover:border-amber-500/30 hover:bg-amber-500/5 hover:text-white"
           >
             WhatsApp
             <svg
@@ -41,6 +48,7 @@ export function Navbar() {
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"

@@ -1,53 +1,115 @@
-import { createWhatsAppLink, HERO_MESSAGE } from '../lib/whatsapp';
+import Image from 'next/image';
+import { createWhatsAppLink, HERO_MESSAGE, formatPrice } from '../lib/whatsapp';
+import { getMenuImage } from '../lib/menu-media';
+import { MENU_DATA, type MenuItem } from '../data/menu';
+
+const starPromo = MENU_DATA.find((item) => item.id === 'promo-2x-mechada') as MenuItem;
+const starPromoImage = getMenuImage(starPromo.imageId || starPromo.id);
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden px-6 py-20 lg:py-32 flex flex-col items-center text-center">
-      {/* Background elegant grid & radial glowing effects */}
+    <section
+      id="top"
+      aria-labelledby="hero-title"
+      className="relative overflow-hidden px-4 py-16 text-center sm:px-6 sm:py-20 lg:py-28"
+    >
       <div className="absolute inset-0 grid-bg-overlay opacity-[0.02] pointer-events-none" />
-      <div className="absolute top-[35%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.04),transparent_70%)] pointer-events-none" />
-      <div className="absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.03),transparent_70%)] pointer-events-none animate-pulse-slow" />
+      <div className="absolute left-1/2 top-[34%] h-[440px] w-[440px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.06),transparent_70%)] pointer-events-none sm:h-[520px] sm:w-[520px]" />
+      <div className="absolute left-1/2 top-[40%] h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.04),transparent_70%)] pointer-events-none animate-pulse-slow sm:h-[320px] sm:w-[320px]" />
 
-      <div className="relative z-10 max-w-3xl flex flex-col items-center">
-        {/* Play Ancha Tag */}
-        <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/5 bg-white/[0.02] px-4 py-1.5 text-[10px] font-mono tracking-[0.2em] text-zinc-400 uppercase">
+      <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center">
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/8 bg-white/[0.03] px-4 py-2 text-[10px] font-mono uppercase tracking-[0.22em] text-zinc-400">
           <span className="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" />
-          Tradición & Alta Cocina — Playa Ancha
+          Tradición y fuego lento en Playa Ancha
         </div>
 
-        {/* Center Prominent Logo with drop shadow */}
-        <div className="relative flex justify-center mb-8">
-          <img
+        <div className="relative mb-8 flex justify-center">
+          <Image
             src="/brand/logo.png"
-            alt="The Best Burger Logo"
-            className="w-48 sm:w-56 md:w-64 h-auto object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)] drop-shadow-[0_4px_10px_rgba(245,158,11,0.15)] transition-transform duration-700 hover:scale-102"
+            alt="Logo de The Best Burger"
+            width={256}
+            height={256}
+            priority
+            className="h-auto w-44 object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)] transition-transform duration-700 hover:scale-[1.02] sm:w-52 md:w-60"
           />
         </div>
 
-        {/* Elegant Minimalist Copy */}
-        <h1 className="text-4xl font-light tracking-tight text-zinc-100 sm:text-5xl md:text-6xl leading-[1.1] max-w-2xl">
-          Recetas legendarias <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 font-medium">
-            hechas con alma y paciencia.
+        <h1
+          id="hero-title"
+          className="max-w-3xl text-balance text-4xl font-light leading-[1.04] tracking-tight text-zinc-100 sm:text-5xl md:text-6xl"
+        >
+          Mechadas y burgers
+          <br />
+          <span className="bg-gradient-to-r from-amber-300 via-amber-500 to-orange-500 bg-clip-text font-medium text-transparent">
+            con presencia premium y sabor casero.
           </span>
         </h1>
 
-        <p className="mt-6 max-w-xl text-zinc-400 text-sm sm:text-base leading-relaxed font-light">
-          Nuestras sándwiches de mechada desmechada a mano cocinadas por horas con la receta de la abuela, hamburguesas jugosas en pan brioche artesanal y papas rústicas crujientes. Directo del fuego a tu mesa.
+        <p className="mt-5 max-w-2xl text-pretty text-sm font-light leading-7 text-zinc-300 sm:text-base">
+          Sándwiches de mechada cocinada por horas, burgers jugosas en pan brioche
+          artesanal y papas rústicas crujientes. Una carta pensada para pedir rápido,
+          verse impecable en mobile y convertir directo por WhatsApp.
         </p>
 
-        {/* CTA Buttons */}
-        <div className="mt-10 flex flex-wrap justify-center gap-4">
+        {starPromo && (
+          <div className="mt-8 w-full max-w-3xl">
+            <article className="apple-glass-card highlight-gold-active group overflow-hidden rounded-[28px] border border-amber-500/20 p-3 sm:p-4">
+              <div className="grid items-center gap-4 sm:grid-cols-[92px_minmax(0,1fr)] sm:gap-5">
+                {starPromoImage ? (
+                  <div className="relative mx-auto aspect-square w-20 overflow-hidden rounded-2xl border border-white/10 bg-black/40 shadow-[0_12px_35px_rgba(0,0,0,0.45)] sm:mx-0 sm:w-[92px]">
+                    <Image
+                      src={starPromoImage.src}
+                      alt={starPromoImage.alt}
+                      fill
+                      sizes="92px"
+                      className="object-cover transition duration-700 group-hover:scale-110"
+                      style={{ objectPosition: starPromoImage.objectPosition }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10" />
+                  </div>
+                ) : null}
+
+                <div className="grid gap-3 text-left sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
+                  <div>
+                    <p className="mb-1 inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.28em] text-amber-400">
+                      <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+                      La más vendida
+                    </p>
+                    <h2 className="text-lg font-semibold leading-tight text-zinc-50 sm:text-xl">
+                      {starPromo.name}
+                    </h2>
+                    <p className="mt-1 text-xs leading-6 text-zinc-400 sm:text-sm">
+                      Ideal para compartir. Vidriera premium, respuesta rápida y foco total en el producto.
+                    </p>
+                  </div>
+
+                  <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-left sm:min-w-[122px]">
+                    <p className="text-[10px] font-mono uppercase tracking-[0.24em] text-zinc-500">
+                      Promo
+                    </p>
+                    <p className="mt-1 font-mono text-2xl font-bold tracking-tight text-amber-400">
+                      {formatPrice(starPromo.price)}
+                    </p>
+                    <p className="text-[11px] text-zinc-500">2x mechadas + papitas</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        )}
+
+        <div className="mt-8 flex w-full max-w-xl flex-col justify-center gap-3 sm:flex-row sm:flex-wrap">
           <a
             href={createWhatsAppLink(HERO_MESSAGE)}
             target="_blank"
             rel="noreferrer"
-            className="btn-premium-primary"
+            aria-label="Pedir por WhatsApp"
+            className="btn-premium-primary w-full sm:w-auto"
           >
             Pedir por WhatsApp
           </a>
-          <a href="#menu" className="btn-premium">
-            Explorar la Carta
+          <a href="#menu" className="btn-premium w-full sm:w-auto">
+            Explorar la carta
           </a>
         </div>
       </div>
