@@ -16,6 +16,32 @@ const CATEGORIES: Array<{ id: Category; label: string }> = [
   { id: 'powerups', label: 'Complementos' },
 ];
 
+const CATEGORY_TAB_THEME: Record<
+  Category,
+  { active: string; idle: string }
+> = {
+  promos: {
+    active: 'border-amber-400/40 bg-amber-500/14 text-amber-200 shadow-[0_0_22px_rgba(245,158,11,0.12)]',
+    idle: 'border-amber-500/20 bg-amber-500/[0.04] text-amber-100/80 hover:border-amber-400/35 hover:text-amber-100',
+  },
+  combos: {
+    active: 'border-amber-400/40 bg-amber-500/14 text-amber-200 shadow-[0_0_22px_rgba(245,158,11,0.12)]',
+    idle: 'border-amber-500/16 bg-amber-500/[0.03] text-amber-100/75 hover:border-amber-400/28 hover:text-amber-100',
+  },
+  mechadas: {
+    active: 'border-amber-400/40 bg-amber-500/14 text-amber-200 shadow-[0_0_22px_rgba(245,158,11,0.12)]',
+    idle: 'border-amber-500/16 bg-amber-500/[0.03] text-amber-100/75 hover:border-amber-400/28 hover:text-amber-100',
+  },
+  burgers: {
+    active: 'border-white/18 bg-white/[0.08] text-zinc-100',
+    idle: 'border-white/8 bg-white/[0.03] text-zinc-500 hover:text-zinc-200',
+  },
+  powerups: {
+    active: 'border-orange-400/35 bg-orange-500/10 text-orange-200 shadow-[0_0_22px_rgba(249,115,22,0.10)]',
+    idle: 'border-white/8 bg-white/[0.03] text-zinc-500 hover:text-zinc-200',
+  },
+};
+
 export function MenuSection() {
   const [activeCategory, setActiveCategory] = useState<Category>('promos');
 
@@ -60,6 +86,7 @@ export function MenuSection() {
         >
           {CATEGORIES.map((category) => {
             const isActive = category.id === activeCategory;
+            const theme = CATEGORY_TAB_THEME[category.id];
 
             return (
               <button
@@ -71,9 +98,7 @@ export function MenuSection() {
                 id={`tab-${category.id}`}
                 onClick={() => setActiveCategory(category.id)}
                 className={`relative shrink-0 rounded-full border px-4 py-2.5 text-xs font-mono uppercase tracking-[0.18em] transition-all duration-300 ${
-                  isActive
-                    ? 'border-amber-500/30 bg-amber-500/10 text-amber-300'
-                    : 'border-white/8 bg-white/[0.03] text-zinc-500 hover:text-zinc-200'
+                  isActive ? theme.active : theme.idle
                 }`}
               >
                 {category.label}

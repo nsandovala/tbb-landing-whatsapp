@@ -6,6 +6,22 @@ import { MENU_DATA, type MenuItem } from '../data/menu';
 const starPromo = MENU_DATA.find((item) => item.id === 'promo-2x-mechada') as MenuItem;
 const starPromoImage = getMenuImage(starPromo.imageId || starPromo.id);
 
+const EMBERS = [
+  { left: '12%', top: '24%', delay: '0s', duration: '11s', size: '8px' },
+  { left: '20%', top: '58%', delay: '1.8s', duration: '13s', size: '6px' },
+  { left: '36%', top: '19%', delay: '0.8s', duration: '10s', size: '5px' },
+  { left: '64%', top: '18%', delay: '2.6s', duration: '14s', size: '7px' },
+  { left: '74%', top: '52%', delay: '1.2s', duration: '12s', size: '5px' },
+  { left: '86%', top: '33%', delay: '3.4s', duration: '15s', size: '9px' },
+];
+
+const CHIPS = [
+  { left: '18%', top: '74%', delay: '0.6s' },
+  { left: '43%', top: '66%', delay: '1.7s' },
+  { left: '68%', top: '72%', delay: '2.5s' },
+  { left: '82%', top: '62%', delay: '0.9s' },
+];
+
 export function Hero() {
   return (
     <section
@@ -16,6 +32,35 @@ export function Hero() {
       <div className="absolute inset-0 grid-bg-overlay opacity-[0.02] pointer-events-none" />
       <div className="absolute left-1/2 top-[34%] h-[440px] w-[440px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.06),transparent_70%)] pointer-events-none sm:h-[520px] sm:w-[520px]" />
       <div className="absolute left-1/2 top-[40%] h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.04),transparent_70%)] pointer-events-none animate-pulse-slow sm:h-[320px] sm:w-[320px]" />
+
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
+        <div className="hero-grill-haze absolute inset-x-0 bottom-0 h-[38%]" />
+        {EMBERS.map((ember) => (
+          <span
+            key={`${ember.left}-${ember.top}`}
+            className="hero-ember"
+            style={{
+              left: ember.left,
+              top: ember.top,
+              width: ember.size,
+              height: ember.size,
+              animationDelay: ember.delay,
+              animationDuration: ember.duration,
+            }}
+          />
+        ))}
+        {CHIPS.map((chip) => (
+          <span
+            key={`${chip.left}-${chip.top}`}
+            className="hero-chip"
+            style={{
+              left: chip.left,
+              top: chip.top,
+              animationDelay: chip.delay,
+            }}
+          />
+        ))}
+      </div>
 
       <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center">
         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/8 bg-white/[0.03] px-4 py-2 text-[10px] font-mono uppercase tracking-[0.22em] text-zinc-400">

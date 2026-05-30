@@ -1,10 +1,14 @@
 import { Navbar } from '../components/Navbar';
 import { Hero } from '../components/Hero';
+import { PromoHighlight } from '../components/PromoHighlight';
 import { MegaPromosSection } from '../components/MegaPromosSection';
 import { MenuSection } from '../components/MenuSection';
 import { MenuDownloadSection } from '../components/MenuDownloadSection';
 import { HowToOrder } from '../components/HowToOrder';
 import { Footer } from '../components/Footer';
+import { MENU_DATA } from '../data/menu';
+
+const starPromo = MENU_DATA.find((item) => item.id === 'promo-2x-mechada');
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -36,6 +40,7 @@ export default function Home() {
       <Navbar />
       <main id="main-content">
         <Hero />
+        {starPromo ? <PromoHighlight item={starPromo} /> : null}
         <MegaPromosSection />
         <MenuSection />
         <MenuDownloadSection />
