@@ -190,6 +190,22 @@ button:focus-visible {
   filter: brightness(1.08);
 }
 
+.cart-button-fade-in {
+  animation: cart-button-fade-in 0.22s ease-out;
+}
+
+@keyframes cart-button-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .grid-bg-overlay {
   background-image:
     linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),

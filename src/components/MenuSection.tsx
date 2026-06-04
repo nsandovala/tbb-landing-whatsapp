@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useMemo, useState } from 'react';
+import { useCart } from '../cart/CartProvider';
 import { MENU_DATA, type MenuItem } from '../data/menu';
 import { getMenuImage } from '../lib/menu-media';
 import { createProductOrderLink, formatPrice } from '../lib/whatsapp';
@@ -123,6 +124,7 @@ export function MenuSection() {
 }
 
 function MenuItemCard({ item }: { item: MenuItem }) {
+  const { add } = useCart();
   const isHighlighted = Boolean(item.highlight);
   const isPowerup = item.category === 'powerups';
   const imageLookupId = item.imageId || item.id;
@@ -199,19 +201,29 @@ function MenuItemCard({ item }: { item: MenuItem }) {
         </div>
       </div>
 
-      <a
-        href={createProductOrderLink(item)}
-        target="_blank"
-        rel="noreferrer"
-        aria-label={`Pedir ${item.name} por WhatsApp`}
-        className={`inline-flex w-full items-center justify-center rounded-2xl border px-4 py-3 text-xs font-semibold uppercase tracking-[0.18em] transition-all duration-300 ${
-          isHighlighted
-            ? 'border-amber-500/20 bg-amber-500/5 text-amber-400 hover:border-amber-500/40 hover:bg-amber-500/10'
-            : 'border-white/10 bg-white/5 text-zinc-300 hover:border-amber-500/30 hover:bg-amber-500/5 hover:text-white'
-        }`}
-      >
-        Pedir por WhatsApp
-      </a>
+      <div className="grid gap-2.5">
+        <button
+          type="button"
+          onClick={() => add(item.id)}
+          className="inline-flex w-full items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-300 transition-all duration-300 hover:border-amber-500/30 hover:bg-amber-500/5 hover:text-white"
+        >
+          Agregar
+        </button>
+
+        <a
+          href={createProductOrderLink(item)}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`Pedir ${item.name} por WhatsApp`}
+          className={`inline-flex w-full items-center justify-center rounded-2xl border px-4 py-3 text-xs font-semibold uppercase tracking-[0.18em] transition-all duration-300 ${
+            isHighlighted
+              ? 'border-amber-500/20 bg-amber-500/5 text-amber-400 hover:border-amber-500/40 hover:bg-amber-500/10'
+              : 'border-white/10 bg-white/5 text-zinc-300 hover:border-amber-500/30 hover:bg-amber-500/5 hover:text-white'
+          }`}
+        >
+          Pedir por WhatsApp
+        </a>
+      </div>
     </article>
   );
 }

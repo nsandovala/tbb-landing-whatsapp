@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
+import { CartProvider } from '../cart/CartProvider';
+import { CartButton } from '../components/CartButton';
 import './globals.css';
 
 const inter = Inter({
@@ -79,10 +81,13 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${inter.variable} scroll-smooth`}>
       <body className="antialiased selection:bg-amber-500/20 selection:text-amber-300">
-        <a href="#main-content" className="skip-link">
-          Saltar al contenido
-        </a>
-        {children}
+        <CartProvider>
+          <a href="#main-content" className="skip-link">
+            Saltar al contenido
+          </a>
+          {children}
+          <CartButton />
+        </CartProvider>
       </body>
     </html>
   );
