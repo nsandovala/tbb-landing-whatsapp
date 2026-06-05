@@ -24,11 +24,14 @@ type CartContextValue = {
   items: CartLine[];
   count: number;
   subtotal: number;
+  isOpen: boolean;
   add: (id: string) => void;
   increment: (id: string) => void;
   decrement: (id: string) => void;
   remove: (id: string) => void;
   clear: () => void;
+  openCart: () => void;
+  closeCart: () => void;
 };
 
 const CartContext = createContext<CartContextValue | null>(null);
@@ -61,6 +64,7 @@ function isValidCartState(value: unknown): value is CartState {
 export function CartProvider({ children }: PropsWithChildren) {
   const [state, dispatch] = useReducer(cartReducer, initialCartState);
   const [hydrated, setHydrated] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     try {
@@ -92,11 +96,14 @@ export function CartProvider({ children }: PropsWithChildren) {
     items: state.items,
     count: selectCount(state),
     subtotal: selectSubtotal(state),
+    isOpen,
     add: (id) => dispatch({ type: 'ADD', id }),
     increment: (id) => dispatch({ type: 'INCREMENT', id }),
     decrement: (id) => dispatch({ type: 'DECREMENT', id }),
     remove: (id) => dispatch({ type: 'REMOVE', id }),
     clear: () => dispatch({ type: 'CLEAR' }),
+    openCart: () => setIsOpen(true),
+    closeCart: () => setIsOpen(false),
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

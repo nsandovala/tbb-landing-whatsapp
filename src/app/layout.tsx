@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import { CartProvider } from '../cart/CartProvider';
 import { CartButton } from '../components/CartButton';
+import { CartSheet } from '../components/CartSheet';
 import './globals.css';
 
 const inter = Inter({
@@ -87,6 +88,7 @@ export default function RootLayout({
           </a>
           {children}
           <CartButton />
+          <CartSheet />
         </CartProvider>
       </body>
     </html>
