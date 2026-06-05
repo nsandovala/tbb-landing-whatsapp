@@ -25,7 +25,7 @@ export function HowToOrder() {
   return (
     <section
       aria-labelledby="how-to-order-title"
-      className="relative border-t border-white/5 bg-[#0b0b0c] px-4 py-20 sm:px-6 sm:py-24"
+      className="relative border-t border-white/5 bg-[#0b0b0c] px-5 py-20 sm:px-6 sm:py-24"
     >
       <div className="absolute inset-0 grid-bg-overlay opacity-[0.01] pointer-events-none" />
 

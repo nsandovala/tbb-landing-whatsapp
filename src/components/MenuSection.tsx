@@ -55,7 +55,7 @@ export function MenuSection() {
     <section
       id="menu"
       aria-labelledby="menu-title"
-      className="relative border-t border-white/5 bg-[#0b0b0c] px-4 py-20 sm:px-6 sm:py-24"
+      className="relative border-t border-white/5 bg-[#0b0b0c] px-5 py-20 sm:px-6 sm:py-24"
     >
       <div className="absolute inset-0 grid-bg-overlay opacity-[0.01] pointer-events-none" />
 
@@ -188,7 +188,9 @@ function MenuItemCard({ item }: { item: MenuItem }) {
             </p>
           </div>
 
-          <p className="mb-4 text-sm leading-7 text-zinc-400">{item.description}</p>
+          <p className="mb-4 line-clamp-3 text-sm leading-7 text-zinc-400 sm:line-clamp-none">
+            {item.description}
+          </p>
 
           {item.includes ? (
             <div className="mt-3 flex items-center gap-2 border-t border-white/5 pt-3">

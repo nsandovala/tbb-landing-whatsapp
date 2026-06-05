@@ -9,7 +9,7 @@ export function PromoHighlight({ item }: { item: MenuItem }) {
   return (
     <section
       aria-labelledby="promo-highlight-title"
-      className="relative border-t border-white/5 bg-[#0b0b0c] px-4 py-12 sm:px-6 sm:py-14"
+      className="relative border-t border-white/5 bg-[#0b0b0c] px-5 py-12 sm:px-6 sm:py-14"
     >
       <div className="absolute inset-0 grid-bg-overlay opacity-[0.01] pointer-events-none" />
 

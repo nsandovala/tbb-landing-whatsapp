@@ -27,7 +27,7 @@ export function Hero() {
     <section
       id="top"
       aria-labelledby="hero-title"
-      className="relative overflow-hidden px-4 py-16 text-center sm:px-6 sm:py-20 lg:py-28"
+      className="relative overflow-hidden px-5 py-16 text-center sm:px-6 sm:py-20 lg:py-28"
     >
       <div className="absolute inset-0 grid-bg-overlay opacity-[0.02] pointer-events-none" />
       <div className="absolute left-1/2 top-[34%] h-[440px] w-[440px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.06),transparent_70%)] pointer-events-none sm:h-[520px] sm:w-[520px]" />

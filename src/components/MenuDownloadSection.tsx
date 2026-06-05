@@ -9,7 +9,7 @@ export function MenuDownloadSection() {
   return (
     <section
       aria-labelledby="menu-download-title"
-      className="relative border-t border-white/5 bg-[#0b0b0c] px-4 py-16 sm:px-6"
+      className="relative border-t border-white/5 bg-[#0b0b0c] px-5 py-16 sm:px-6"
     >
       <div className="absolute inset-0 grid-bg-overlay opacity-[0.01] pointer-events-none" />
 
